@@ -24,3 +24,13 @@ app.get('/users/:id', (req, res) => {
     res.status(404).json({ error: 'User not found' });
   }
 });
+
+// POST /users - Create a new user
+app.post('/users', (req, res) => {
+  const newUser = {
+    id: users.length + 1,
+    ...req.body
+  };
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
