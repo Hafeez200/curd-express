@@ -34,3 +34,17 @@ app.post('/users', (req, res) => {
   users.push(newUser);
   res.status(201).json(newUser);
 });
+
+// PUT /users/:id - Update a user by ID
+app.put('/users/:id', (req, res) => {
+  const userIndex = users.findIndex(user => user.id === parseInt(req.params.id));
+  if (userIndex !== -1) {
+    users[userIndex] = {
+      ...users[userIndex],
+      ...req.body
+    };
+    res.json(users[userIndex]);
+  } else {
+    res.status(404).json({ error: 'User not found' });
+  }
+});
