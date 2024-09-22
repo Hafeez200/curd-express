@@ -48,3 +48,15 @@ app.put('/users/:id', (req, res) => {
     res.status(404).json({ error: 'User not found' });
   }
 });
+
+
+// DELETE /users/:id - Delete a user by ID
+app.delete('/users/:id', (req, res) => {
+  const userIndex = users.findIndex(user => user.id === parseInt(req.params.id));
+  if (userIndex !== -1) {
+    users.splice(userIndex, 1);
+    res.json({ message: 'User deleted' });
+  } else {
+    res.status(404).json({ error: 'User not found' });
+  }
+});
