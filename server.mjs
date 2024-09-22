@@ -60,3 +60,5 @@ app.delete('/users/:id', (req, res) => {
     res.status(404).json({ error: 'User not found' });
   }
 });
+
+const port = 3000;
